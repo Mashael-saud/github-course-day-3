@@ -7,9 +7,22 @@ on:
       - "*"
 
 jobs:
-  bash: 
+  job1: 
+
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/checkout@v3
-     - run: |
-        exit 1 
+     - name: step 1
+       run: |
+        touch step1.txt
+        echo "hi from step1" > step1.txt
+     - name: step 2
+       run: |
+        cat step1.txt
+  job2: 
+   if: github.event.pull_request.mergad == true
+   runs-on: ubuntu-latest
+   steps:
+      - name: step 3
+        run: |
+         cat step1.txt
+    
